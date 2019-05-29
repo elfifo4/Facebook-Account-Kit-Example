@@ -1,4 +1,4 @@
-package com.appmobbo.mytestapp;
+package com.appmobbo.eladfinish;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

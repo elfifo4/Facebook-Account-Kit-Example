@@ -18,7 +18,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.appmobbo.mytestapp;
+package com.eladfinish;
 
 import android.app.Application;
 import android.os.Build;

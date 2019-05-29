@@ -1,4 +1,4 @@
-package com.appmobbo.mytestapp;
+package com.eladfinish;
 
 
 /*
@@ -39,9 +39,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.appmobbo.mytestapp.ErrorActivity;
-import com.appmobbo.mytestapp.R;
-import com.appmobbo.mytestapp.TokenActivity;
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitLoginResult;

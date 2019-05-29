@@ -18,7 +18,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.appmobbo.mytestapp;
+package com.eladfinish;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.eladfinish.R;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitError;
 
