@@ -1,4 +1,4 @@
-package com.appmobbo.eladfinish;
+package com.eladfinish;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

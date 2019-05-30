@@ -37,8 +37,10 @@ import android.support.annotation.NonNull;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.airbnb.deeplinkdispatch.DeepLink;
 import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitLoginResult;
@@ -53,11 +55,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class MainActivity extends Activity {
     private static final int FRAMEWORK_REQUEST_CODE = 1;
 
     private int nextPermissionsRequestCode = 4000;
     private final Map<Integer, OnCompleteListener> permissionsListeners = new HashMap<>();
+
 
     private interface OnCompleteListener {
         void onComplete();
@@ -73,6 +77,11 @@ public class MainActivity extends Activity {
         }
 
         printKeyHash();
+
+    }
+
+    public void goToDeepLink(View view) {
+        startActivity(new Intent(this, DeepLinkActivity.class));
     }
 
 
@@ -122,14 +131,19 @@ public class MainActivity extends Activity {
             intent.putExtra(ErrorActivity.HELLO_TOKEN_ACTIVITY_ERROR_EXTRA, loginResult.getError());
 
             startActivity(intent);
-        } else {
+        } else { //Success
             final AccessToken accessToken = loginResult.getAccessToken();
             final long tokenRefreshIntervalInSeconds =
                     loginResult.getTokenRefreshIntervalInSeconds();
             if (accessToken != null) {
                 toastMessage = "Success:" + accessToken.getAccountId()
                         + tokenRefreshIntervalInSeconds;
-                startActivity(new Intent(this, TokenActivity.class));
+
+                Intent intent = new Intent(this, TokenActivity.class);
+                intent.putExtra("AccountId", accessToken.getAccountId());
+                intent.putExtra("TokenRefreshIntervalInSeconds", tokenRefreshIntervalInSeconds);
+                startActivity(intent);
+
             } else {
                 toastMessage = "Unknown response type";
             }

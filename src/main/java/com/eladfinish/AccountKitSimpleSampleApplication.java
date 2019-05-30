@@ -21,17 +21,25 @@
 package com.eladfinish;
 
 import android.app.Application;
+import android.content.IntentFilter;
 import android.os.Build;
 import android.os.StrictMode;
+import android.support.v4.content.LocalBroadcastManager;
+
+import com.airbnb.deeplinkdispatch.DeepLinkHandler;
 
 public class AccountKitSimpleSampleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        IntentFilter intentFilter = new IntentFilter(DeepLinkHandler.ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(new DeepLinkReceiver(), intentFilter);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Kitkat and lower has a bug that can cause in correct strict mode
             // warnings about expected activity counts
-            enableStrictMode();
+//            enableStrictMode();
         }
     }
 

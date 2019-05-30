@@ -1,15 +1,15 @@
 /**
  * Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
- *
+ * <p>
  * You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
  * copy, modify, and distribute this software in source code or binary form for use
  * in connection with the web services and APIs provided by Facebook.
- *
+ * <p>
  * As with any software that integrates with the Facebook platform, your use of
  * this software is subject to the Facebook Developer Principles and Policies
  * [http://developers.facebook.com/policy/]. This copyright notice shall be
  * included in all copies or substantial portions of the software.
- *
+ * <p>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
@@ -21,6 +21,7 @@
 package com.eladfinish;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -62,15 +63,29 @@ public class TokenActivity extends Activity {
 
                 final TextView phoneNumber = findViewById(R.id.user_phone);
                 final PhoneNumber number = account.getPhoneNumber();
-                phoneNumber.setText(number == null ? null : number.toString());
+                phoneNumber.setText(number == null ? "not set" : number.toString());
 
-                final TextView email = findViewById(R.id.user_email);
-                email.setText(account.getEmail());
+                final TextView emailTextView = findViewById(R.id.user_email);
+                String email = account.getEmail();
+                emailTextView.setText(email == null || email.isEmpty() ? "not set" : email);
             }
 
             @Override
             public void onError(final AccountKitError error) {
             }
         });
+
+
+        final TextView token = findViewById(R.id.user_token);
+
+        Intent intent = getIntent();
+        String accountId = intent.getStringExtra("AccountId");
+        long tokenRefreshIntervalInSeconds = intent.getLongExtra("TokenRefreshIntervalInSeconds", 0);
+
+        token.setText(accountId);
+        token.append("\n---\n");
+        token.append(String.valueOf(tokenRefreshIntervalInSeconds));
+
+
     }
 }

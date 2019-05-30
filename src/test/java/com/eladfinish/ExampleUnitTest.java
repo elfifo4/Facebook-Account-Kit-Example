@@ -1,4 +1,4 @@
-package com.appmobbo.eladfinish;
+package com.eladfinish;
 
 import org.junit.Test;
 
